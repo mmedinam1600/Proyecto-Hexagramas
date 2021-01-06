@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hexagramas</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+<h1>Hexagramas</h1>
+
+<!-- HICE UN POCO EL ESQUELETO DE LA PÁGINA, AUN NO ESTAN CREADOS LAS CLASES DE CSS NI LAS FUNCIONES. -->
+<!-- SIENTANSE LIBRES DE MODIFICAR LO QUE GUSTEN -->
+<!-- YO ESTOY USANDO LA METODOLOGÍA BEM (PARA LAS CLASES CSS), ESTARÍA BUENO QUE LE DIERAN UNA CHEQUEADA -->
+
+<!-- LES RECUERDO ALGUNOS COMANDOS DE GITHUB -->
+<!-- SUBIR ARCHIVOS: -->
+<!-- GIT ADD -A -->
+<!-- GIT COMMIT -m "Aquí ponen un mensaje de lo que modificarón" -->
+<!-- GIT PUSH ORIGIN MAIN -->
+
+<!-- ACTUALIZAR ARCHIVOS -->
+<!-- GIT PULL ORIGIN MAIN -->
+
+<div class="inputCard">
+  <div class="inputCard__title">
+    <!-- TÍTULO DE LA TARJETA -->
+    <h4>Valores Hexagrama</h4>
+  </div>
+  <div class="inputCard__inputs">
+    <!-- INPUTS PARA INGRESAR LOS VALORES -->
+    <!-- Hay que validar que los datos ingresados sean numeros (2,3) y que ningún campo este vacío. -->
+    <label for="valor1">Número 1:</label>
+    <input type="text" id="valor1" name="valor1"/>
+    <label for="valor2">Número 2:</label>
+    <input type="text" id="valor2" name="valor2"/>
+    <label for="valor3">Número 3:</label>
+    <input type="text" id="valor3" name="valor3"/>
+  </div>
+  <div class="inputCard__buttons">
+    <!-- INPUTS PARA LLAMAR A LAS FUNCIONES -->
+    <input type="button" value="Agregar Línea" onclick="agregarLinea();"/>
+    <input type="button" value="Borrar Línea" onclick="borrarLinea();"/>
+    <input type="button" value="Borrar Hexagrama" onclick="borrarHexagrama();"/>
+  </div>
+</div>
+
+<div class="hexagramChart">
+  <!-- AQUI AGREGAREMOS LAS LÍNEAS CON JS -->
+  <div class="hexagramChart__line"></div>
+</div>
+
+<!-- ...AUN FALTAN LAS CONVERSIONES DE HEXAGRAMAS SI ES EL CASO -->
+
+
+<script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>
