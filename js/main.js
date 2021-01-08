@@ -16,7 +16,6 @@ function iniciar(){
   var n3=parseInt(num3,10);
   var valLin=n1+n2+n3; //variable que guarda el valor de la suma de los 3 numeros
   var valor= ConvLineas(valLin);
-  alert(valor);
   celda=document.createElement("tr");
   texto=document.createTextNode(valor);
   celda.appendChild(texto);
@@ -55,7 +54,7 @@ function verificaVal( x, y, z){//funcion que verifica los valores
   	ok3=true;
   }
   if(ok1==true && ok2==true && ok3==true){
-  	alert("Valores ingresados correctamente");
+  	return;
   }else{
   	alert("Los valores solo pueden ser  el numero 2 o 3  ");
   }
