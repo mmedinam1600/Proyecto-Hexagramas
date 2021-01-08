@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Hexagramas</title>
   <link rel="stylesheet" href="./css/main.css">
 </head>
-<body>
+<body onLoad="iniciar()">
 <h1>Hexagramas</h1>
 
 <!-- HICE UN POCO EL ESQUELETO DE LA PÁGINA, AUN NO ESTAN CREADOS LAS CLASES DE CSS NI LAS FUNCIONES. -->
@@ -22,12 +22,12 @@
 <!-- git pull origin master -->
 
 <!-- NOTA: Siempre que vayan a editar código asegurense de que hayan actualizado los archivos, y siempre que finalicen de editar suban los archivos. -->
-
 <div class="inputCard">
   <div class="inputCard__title">
     <!-- TÍTULO DE LA TARJETA -->
     <h4>Valores Hexagrama</h4>
   </div>
+
   <div class="inputCard__inputs">
     <!-- INPUTS PARA INGRESAR LOS VALORES -->
     <!-- Hay que validar que los datos ingresados sean numeros (2,3) y que ningún campo este vacío. -->
@@ -48,12 +48,15 @@
 
 <div class="hexagramChart">
   <!-- AQUI AGREGAREMOS LAS LÍNEAS CON JS -->
-  <div class="hexagramChart__line"></div>
+  <div class="hexagramChart__line">
+    <table width="450" border="2">
+    <tbody id="hexg"><!--Tabla dinamica para que se vaya creando el hexagrama--->
+      </tbody> 
+    </table>
+  </div>
 </div>
 
 <!-- ...AUN FALTAN LAS CONVERSIONES DE HEXAGRAMAS SI ES EL CASO -->
-
-
 <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>
