@@ -40,7 +40,7 @@
   </div>
   <div class="inputCard__buttons">
     <!-- INPUTS PARA LLAMAR A LAS FUNCIONES -->
-    <input type="button" value="Agregar Línea" onclick="agregarLinea();"/>
+    <input type="button" value="Agregar Línea" onclick="verificaVal();"/>
     <input type="button" value="Borrar Línea" onclick="borrarLinea();"/>
     <input type="button" value="Borrar Hexagrama" onclick="borrarHexagrama();"/>
   </div>
@@ -49,9 +49,9 @@
 <div class="hexagramChart">
   <!-- AQUI AGREGAREMOS LAS LÍNEAS CON JS -->
   <div class="hexagramChart__line">
-    <table width="450" border="2">
+    <table border="2">
     <tbody id="hexg"><!--Tabla dinamica para que se vaya creando el hexagrama--->
-      </tbody> 
+    </tbody> 
     </table>
   </div>
 </div>
