@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+body{
+    /* Background */
+    background-image: url('../images/Backgorund4.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #f3f0ec;
+
+    /* Estilo de fuente general */
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: .3px;
+    color: #000;
+    margin: 0;
+}
+
+h1{
+    font-family: Satisfy, sans-serif;
+    font-size: 6rem;
+    text-align: center;
+    margin-top: 100px;
+    letter-spacing: 0.46px;
+    color: #661a3f;
+    text-shadow: 2px 2px #000000;
+}
+
+.inputCard{
+    margin: 5rem auto;
+    width: 15%;
+    min-width: 275px;
+    background-color: #d7d558;
+    box-shadow: 6px 4px #000000;
+    border-top: 2px solid #000;
+    border-right: 4px solid #000;
+    border-bottom: 6px solid #000;
+    border-left: 2px solid #000;
+}
+
+.inputCard__title{
+    text-align: center;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #000;
+    margin-bottom: 5px;
+}
+
+.inputCard__content{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: space-between;
+    margin: 20px 18px;
+}
+
+.inputCard__content__input--text{
+    width: 30%;
+    margin: 5px 0;
+}
+
+.inputCard__content__input--text input{
+    margin-top: 10px;
+    width: 15px;
+    text-align: center;
+}
+
+.inputCard__content__button{
+    width: 70%;
+    margin: 5px 0;
+}
+
+.inputCard__content__button button {
+    width: 175px;
+    text-align: center;
+    padding: 8px;
+    color: #FFF;
+
+    cursor: pointer;
+    font-size: 16px;
+
+    border-radius: 4px;
+    position: relative;
+    background-color: #F39C12;
+    border: none;
+    transition: all 0.5s;
+}
+
+.inputCard__content__button span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.inputCard__content__button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.inputCard__content__button:hover span{
+    padding-right: 25px;
+}
+
+.inputCard__content__button:hover span:after{
+    opacity: 1;
+    right: 0;
+}
+
+.inputCard__content__button--valid{
+    border-color: greenyellow;
+    background-color: rgba(196, 255, 171, 0.5);
+}
+
+.inputCard__content__button--invalid{
+    border-color: red;
+    background-color: rgba(255, 177, 177, 0.5);
+}
+
+.hexagram__container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.hexagram__container--chart{
+
+}
+
+.hexagram__container--table{
+
+}
+
+.hexagram__container--table--header{
+    border-bottom: 2px solid black;
+}
+
+#hexagramTable{
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.hexagram__container--table--borderRight{
+    border-right: 2px solid black;
+}
+

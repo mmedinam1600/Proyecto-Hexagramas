@@ -157,3 +157,16 @@ function ConvLineas3(x){ // Tabla 3
         return ocho;
     }
 }
+
+let verificarNumero = (text) => {
+    text.classList.remove("inputCard__content__button--valid");
+    text.classList.remove("inputCard__content__button--invalid");
+    if(text.value == 2 || text.value == 3){
+        text.classList.add("inputCard__content__button--valid");
+        console.log("Válido");
+    } else{
+        text.classList.add("inputCard__content__button--invalid");
+        console.log("Inválido");
+    }
+
+}

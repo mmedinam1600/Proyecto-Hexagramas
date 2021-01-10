@@ -28,32 +28,156 @@
     <h4>Valores Hexagrama</h4>
   </div>
 
-  <div class="inputCard__inputs">
-    <!-- INPUTS PARA INGRESAR LOS VALORES -->
-    <!-- Hay que validar que los datos ingresados sean numeros (2,3) y que ningún campo este vacío. -->
-    <label for="valor1">Número 1:</label>
-    <input type="text" id="valor1" name="valor1"/>
-    <label for="valor2">Número 2:</label>
-    <input type="text" id="valor2" name="valor2"/>
-    <label for="valor3">Número 3:</label>
-    <input type="text" id="valor3" name="valor3"/>
+  <div class="inputCard__content">
+
+    <div class="inputCard__content__input--text">
+      <label for="valor1">#1:</label>
+      <input type="text" id="valor1" name="valor1" onkeyup="verificarNumero(this);"/>
+    </div>
+
+    <div class="inputCard__content__button">
+      <button onclick="verificaVal();"><span>Agregar Línea</span></button>
+    </div>
+
+    <div class="inputCard__content__input--text">
+      <label for="valor2">#2:</label>
+      <input type="text" id="valor2" name="valor2" onkeyup="verificarNumero(this);"/>
+    </div>
+
+    <div class="inputCard__content__button">
+      <button onclick="borrarLinea();"><span>Borrar Línea</span></button>
+    </div>
+
+    <div class="inputCard__content__input--text">
+      <label for="valor3">#3:</label>
+      <input type="text" id="valor3" name="valor3" onkeyup="verificarNumero(this);"/>
+    </div>
+
+    <div class="inputCard__content__button">
+      <button onclick="borrarHexagrama();"><span>Borrar Hexagrama</span></button>
+    </div>
+
   </div>
-  <div class="inputCard__buttons">
-    <!-- INPUTS PARA LLAMAR A LAS FUNCIONES -->
-    <input type="button" value="Agregar Línea" onclick="verificaVal();"/>
-    <input type="button" value="Borrar Línea" onclick="borrarLinea();"/>
-    <input type="button" value="Borrar Hexagrama" onclick="borrarHexagrama();"/>
-  </div>
+
 </div>
 
-<div class="hexagramChart">
+<div class="hexagram__container">
   <!-- AQUI AGREGAREMOS LAS LÍNEAS CON JS -->
-  <div class="hexagramChart__line">
+
+  <div class="hexagram__container--chart">
     <table border="2">
     <tbody id="hexg"><!--Tabla dinamica para que se vaya creando el hexagrama--->
     </tbody> 
     </table>
   </div>
+
+  <div class="hexagram__container--table">
+    <table id="hexagramTable">
+      <tr class="hexagram__container--table--header">
+        <th>Triagrama Superior</th>
+        <th>Ch'ien</th>
+        <th>K'an</th>
+        <th>Ken</th>
+        <th>K'un</th>
+        <th>Sun</th>
+        <th>Li</th>
+        <th>Tui</th>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">Triagrama Inferior</td>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">Ch'ien</td>
+        <td>1</td>
+        <td>34</td>
+        <td>5</td>
+        <td>26</td>
+        <td>11</td>
+        <td>9</td>
+        <td>14</td>
+        <td>43</td>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">Chen</td>
+        <td>25</td>
+        <td>51</td>
+        <td>3</td>
+        <td>27</td>
+        <td>24</td>
+        <td>42</td>
+        <td>21</td>
+        <td>17</td>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">K'an</td>
+        <td>6</td>
+        <td>40</td>
+        <td>29</td>
+        <td>4</td>
+        <td>7</td>
+        <td>59</td>
+        <td>54</td>
+        <td>37</td>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">Ken</td>
+        <td>33</td>
+        <td>62</td>
+        <td>39</td>
+        <td>52</td>
+        <td>15</td>
+        <td>53</td>
+        <td>56</td>
+        <td>31</td>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">K'un</td>
+        <td>12</td>
+        <td>16</td>
+        <td>8</td>
+        <td>23</td>
+        <td>2</td>
+        <td>20</td>
+        <td>35</td>
+        <td>45</td>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">Sun</td>
+        <td>44</td>
+        <td>32</td>
+        <td>48</td>
+        <td>18</td>
+        <td>46</td>
+        <td>57</td>
+        <td>50</td>
+        <td>28</td>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">Li</td>
+        <td>13</td>
+        <td>55</td>
+        <td>63</td>
+        <td>22</td>
+        <td>36</td>
+        <td>37</td>
+        <td>30</td>
+        <td>49</td>
+      </tr>
+      <tr>
+        <td class="hexagram__container--table--borderRight">Tui</td>
+        <td>10</td>
+        <td>54</td>
+        <td>60</td>
+        <td>41</td>
+        <td>19</td>
+        <td>61</td>
+        <td>38</td>
+        <td>58</td>
+      </tr>
+    </table>
+
+  </div>
+
 </div>
 
 <!-- ...AUN FALTAN LAS CONVERSIONES DE HEXAGRAMAS SI ES EL CASO -->
