@@ -18,6 +18,7 @@ function iniciar(){
   var valor= ConvLineas(valLin);
   var valor2= ConvLineas2(valLin);
   var valor3= ConvLineas3(valLin);
+
   //Tabla 1
   celda=document.createElement("tr");
   texto=document.createTextNode(valor);
@@ -30,6 +31,7 @@ function iniciar(){
      lista.appendChild(celda);      
   }
   tabla.appendChild(lista);
+
   //Tabla 2
   celda2=document.createElement("tr");
   texto2=document.createTextNode(valor2);
@@ -41,6 +43,7 @@ function iniciar(){
      lista2.appendChild(celda2);     
   }
   tabla.appendChild(lista2);
+
   //Tabla 3
   celda3=document.createElement("tr");
   texto3=document.createTextNode(valor3);
@@ -55,14 +58,19 @@ function iniciar(){
 }
 
 function borrarHexagrama(){
-  while(lista.hasChildNodes()){
-  lista.removeChild(lista.lastChild);}
+  while(lista.hasChildNodes() && lista2.hasChildNodes() && lista3.hasChildNodes()){
+    lista.removeChild(lista.lastChild);
+    lista2.removeChild(lista2.lastChild);
+    lista3.removeChild(lista3.lastChild);
+  }
 }
 
 		
 function borrarLinea(){
-  if(lista.hasChildNodes())
+  if(lista.hasChildNodes() && lista2.hasChildNodes() && lista3.hasChildNodes())
   	 lista.removeChild(lista.childNodes[0]);
+     lista2.removeChild(lista2.childNodes[0]);
+     lista3.removeChild(lista3.childNodes[0]);
 }
 
 
@@ -125,6 +133,7 @@ function ConvLineas(x){//funcion que retornara la linea correspondiente dependie
         return nueve;
     }
 }
+
 function ConvLineas2(x){ //Tabla 2
     var siete="__________________________";
     var ocho ="____________ _____________";
@@ -141,6 +150,7 @@ function ConvLineas2(x){ //Tabla 2
         return ocho;
     }
 }
+
 function ConvLineas3(x){ // Tabla 3
     var siete="__________________________";
     var ocho ="____________ _____________";
