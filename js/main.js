@@ -1,4 +1,5 @@
 var tabla,lista,celda,texto;
+var lhexa=new Array(5);
 
 function iniciar(){
  tabla=document.getElementById("hexg");
@@ -55,6 +56,7 @@ function iniciar(){
      lista3.appendChild(celda3);     
   }
   tabla.appendChild(lista3);
+
 }
 
 function borrarHexagrama(){
@@ -83,10 +85,14 @@ function verificaVal(){//funcion que verifica los valores
   var ok2=false;//Bandera
   var ok3=false;//Bandera
   var oklineas=true;//Bandera
+  var hexaCompleto=false;//Bandera
   var lineas = document.getElementsByClassName("linea");
   var nlineas =lineas.length;
   if(nlineas > 5){
     oklineas=false;
+  }
+  if(nlineas==5){
+    hexaCompleto=true;
   }
   if(x==2 || x==3 ){
   	ok1=true;
@@ -108,6 +114,11 @@ function verificaVal(){//funcion que verifica los valores
     }
   }else{
       alert("Solo se permiten valores 2 o 3");
+  }
+
+  //Condicion para que se muestre el nombre y el numero del hexagrama
+  if(hexaCompleto){
+    mostrarNomyNumHexa();
   }
 }
 
@@ -155,15 +166,19 @@ function ConvLineas3(x){ // Tabla 3
     var siete="__________________________";
     var ocho ="____________ _____________";
     if(x == 6){
+        lhexa.push(siete);
         return siete;
     }
     if(x == 9){
+        lhexa.push(ocho);
         return ocho;
     }
     if(x == 7){
+        lhexa.push(siete);
         return siete;
     }
     if(x == 8){
+        lhexa.push(ocho);
         return ocho;
     }
 }
@@ -179,4 +194,9 @@ let verificarNumero = (text) => {
         console.log("Inválido");
     }
 
+}
+
+function mostrarNomyNumHexa(){
+
+  console.log(lhexa);
 }
