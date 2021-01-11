@@ -229,7 +229,7 @@ function mostrarNomyNumHexa(){
     const hexa7 = [2,1,2,2,2,2];  const hexa22 = [1,2,1,2,2,1];  const hexa37 = [1,2,1,2,1,1];  const hexa52 = [2,2,1,2,2,1];
     const hexa8 = [2,2,2,2,1,2];  const hexa23 = [2,2,2,2,2,1];  const hexa38 = [1,1,2,1,2,1];  const hexa53 = [2,2,1,2,1,1];
     const hexa9 = [1,1,1,2,1,1];  const hexa24 = [1,2,2,2,2,2];  const hexa39 = [2,2,1,2,1,2];  const hexa54 = [1,1,2,1,2,2];
-    const hexa10= [1,1,2,1,1,1];  const hexa25 = [1,1,1,2,2,1];  const hexa40 = [2,1,2,1,2,2];  const hexa55 = [1,2,1,1,2,2];
+    const hexa10= [1,1,2,1,1,1];  const hexa25 = [1,2,2,1,1,1];  const hexa40 = [2,1,2,1,2,2];  const hexa55 = [1,2,1,1,2,2];
     const hexa11= [1,1,1,2,2,2];  const hexa26 = [1,1,1,2,2,1];  const hexa41 = [1,1,2,2,2,1];  const hexa56 = [2,2,1,1,2,1];
     const hexa12= [2,2,2,1,1,1];  const hexa27 = [1,2,2,2,2,1];  const hexa42 = [1,2,2,2,1,1];  const hexa57 = [2,1,1,2,1,1];
     const hexa13= [1,2,1,1,1,1];  const hexa28 = [2,1,1,1,1,2];  const hexa43 = [1,1,1,1,1,2];  const hexa58 = [1,1,2,1,1,2];
