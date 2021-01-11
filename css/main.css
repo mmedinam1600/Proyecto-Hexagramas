@@ -129,7 +129,6 @@ h1{
 }
 
 .hexagram__container--chart{
-
 }
 
 .hexagram__container--table{
@@ -148,5 +147,30 @@ h1{
 
 .hexagram__container--table--borderRight{
     border-right: 2px solid black;
+}
+.hexg-table{
+    
+}
+.lineaC{
+   animation-name: beat;
+   animation-duration: 1s ; 
+}
+.linea{
+    animation-name: beat;
+    animation-duration: 1s ; 
+}
+.Hexa-td{
+    background-image: url('../images/Carta.jpg');
+    background-size: cover;
+    padding: 10px; 
+}
+
+@keyframes beat {
+    20%{
+        transform: scale(1);
+    }
+    0%{
+        transform: scale(2);
+    }
 }
 

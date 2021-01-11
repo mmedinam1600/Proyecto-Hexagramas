@@ -7,6 +7,9 @@ function iniciar(){
  lista=document.createElement("td");//se crea
  lista2=document.createElement("td");
  lista3=document.createElement("td");
+ lista.classList.add("Hexa-td");
+ lista2.classList.add("Hexa-td");
+ lista3.classList.add("Hexa-td");
 }
 
  function agregarLinea(){   
@@ -36,6 +39,7 @@ function iniciar(){
   //Tabla 2
   celda2=document.createElement("tr");
   celda2.appendChild(valor2);
+  celda2.classList.add("lineaC");
   if (lista2.hasChildNodes()){
      lista2.insertBefore(celda2,lista2.childNodes[0]); 
   } 
@@ -47,6 +51,7 @@ function iniciar(){
   //Tabla 3
   celda3=document.createElement("tr");
   celda3.appendChild(valor3);
+  celda3.classList.add("lineaC");
   if (lista3.hasChildNodes()){
      lista3.insertBefore(celda3,lista3.childNodes[0]); 
   } 
@@ -168,7 +173,7 @@ function ConvLineas2(x){ //Tabla 2
         return yang;
     }
     if(x == 7){
-        return yin;
+        return yang;
     }
     if(x == 8){
         return yin;
@@ -236,7 +241,7 @@ function mostrarNomyNumHexa(){
     const hexa14= [1,1,1,1,2,1];  const hexa29 = [2,1,2,2,1,2];  const hexa44 = [2,1,1,1,1,1];  const hexa59 = [2,1,2,2,1,1];
     const hexa15= [2,2,1,2,2,2];  const hexa30 = [1,2,1,1,2,1];  const hexa45 = [2,2,2,1,1,2];  const hexa60 = [1,1,2,2,1,2];
     
-
+    //celdaN.appendChild();
     if(lhexa.equals(hexa1)){alert("1. Ch'ien");}      if(lhexa.equals(hexa16)){alert("16. Yü");}       if(lhexa.equals(hexa31)){alert("31. Hsien");}      if(lhexa.equals(hexa46)){alert("46. Sheng");}  if(lhexa.equals(hexa61)){alert("61. Chung Fu");}
     if(lhexa.equals(hexa2)){alert("2. K'un");}        if(lhexa.equals(hexa17)){alert("17. Sui");}      if(lhexa.equals(hexa32)){alert("32. Heng");}       if(lhexa.equals(hexa47)){alert("47. K'un");}   if(lhexa.equals(hexa62)){alert("62. Hsiao Kuo");}
     if(lhexa.equals(hexa3)){alert("3. Chun");}        if(lhexa.equals(hexa18)){alert("18. Ku");}       if(lhexa.equals(hexa33)){alert("33. Tun");}        if(lhexa.equals(hexa48)){alert("48. Ching");}  if(lhexa.equals(hexa63)){alert("63. Chi Chi");}
