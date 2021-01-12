@@ -128,11 +128,18 @@ h1{
     flex-wrap: wrap;
 }
 
-.hexagram__container--chart{
+div.hexagram__container--chart{
+  display:block;
+  position:relative;
+  top:20px;
+  left:325px;
 }
 
-.hexagram__container--table{
-
+div.hexagram__container--table{
+  display:block;
+  position:relative;
+  top:100px;
+  left:-15px;
 }
 
 .hexagram__container--table--header{
