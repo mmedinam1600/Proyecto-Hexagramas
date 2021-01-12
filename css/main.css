@@ -25,6 +25,10 @@ h1{
     letter-spacing: 0.46px;
     color: #661a3f;
     text-shadow: 2px 2px #000000;
+    animation-name: titulo-anim;
+    animation-duration: 1s;
+    animation-direction:alternate-reverse;
+    animation-iteration-count: infinite;
 }
 
 .inputCard{
@@ -158,6 +162,8 @@ div.des{
     margin: 0 auto;
     border-collapse: collapse;
     text-align: center;
+    animation-name: cart;
+    animation-duration: 2s;
 }
 
 .hexagram__container--table--borderRight{
@@ -187,5 +193,23 @@ div.des{
     0%{
         transform: scale(2);
     }
+}
+@keyframes cart{
+    0% {
+        transform: scaleY(0.1);
+        transform: scaleY(0.1);
+    }
+  100% {
+        transform: scaleY(1);
+        transform: scaleY(1);
+  }
+}
+@keyframes titulo-anim{
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0.8);
+    }   
 }
 
