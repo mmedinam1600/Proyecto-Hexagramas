@@ -2,6 +2,9 @@ let tabla;
 let celda = [];
 let lista = [];
 const lhexa=[];
+const lhexa2= [];
+var uno;
+var dos;
 
 var yinM;
 var yang;
@@ -62,9 +65,20 @@ function borrarHexagrama(){
     lista[1].removeChild(lista[1].lastChild);
     lista[2].removeChild(lista[2].lastChild);
     lhexa.pop();
+    lhexa2.pop();
     console.log(lhexa);
   }
    document.getElementById("descr").innerHTML="Descripción hexagrama";
+  var tagHexagrama1 = document.getElementById("nombreHexagrama1");
+  tagHexagrama1.innerHTML = "";
+  var tagHexagrama2 = document.getElementById("nombreHexagrama2");
+  tagHexagrama2.innerHTML = "";
+  if(uno && dos){
+    uno.removeAttribute("style");
+    dos.removeAttribute("style");
+    uno.onmouseover = null;
+    dos.onmouseover = null;
+  }
 }
 
 function borrarLinea(){
@@ -73,8 +87,19 @@ function borrarLinea(){
      lista[1].removeChild(lista[1].childNodes[0]);
      lista[2].removeChild(lista[2].childNodes[0]);
      lhexa.pop();
+     lhexa2.pop();
      console.log(lhexa);
      document.getElementById("descr").innerHTML="Descripción hexagrama";
+    var tagHexagrama1 = document.getElementById("nombreHexagrama1");
+    tagHexagrama1.innerHTML = "";
+  var tagHexagrama2 = document.getElementById("nombreHexagrama2");
+  tagHexagrama2.innerHTML = "";
+  if(uno && dos){
+    uno.removeAttribute("style");
+    dos.removeAttribute("style");
+    uno.onmouseover = null;
+    dos.onmouseover = null;
+  }
 }
 
 function verificaVal(){ //funcion que verifica los valores
@@ -82,11 +107,6 @@ function verificaVal(){ //funcion que verifica los valores
   var valor1 = document.getElementById("valor1").value;
   var valor2 = document.getElementById("valor2").value;
   var valor3 = document.getElementById("valor3").value;
-  var ok1 = false;//Bandera
-  var ok2 = false;//Bandera
-  var ok3 = false;//Bandera
-  var oklineas = true;//Bandera
-  var hexaCompleto = false;//Bandera
   var lineas = document.getElementsByClassName("linea");
   var nlineas =lineas.length;
   if(!valor1 || !valor2 || !valor3){ //Si le falto ingresar un valor en el input
@@ -143,15 +163,19 @@ function ConvertirLineaMutante(sumaValores){ //Tabla 2
   switch (sumaValores){
     case 6:
       yin.src="images/Yin.png";
+      lhexa2.push(2);
       return yin;
     case 7:
       yang.src="images/Yang.png";
+      lhexa2.push(1);
       return yang;
     case 8:
       yin.src="images/Yin.png";
+      lhexa2.push(2);
       return yin;
     case 9:
       yang.src="images/Yang.png";
+      lhexa2.push(1);
       return yang;
     default: return alert("Error al devolver la imagen.");
   }
@@ -278,16 +302,30 @@ function obtenerDescripcion(){
   let contador = 1;
   for(let i = 0;i<hexagramas.length;i++){
     if(lhexa.equals(hexagramas[i])){
-      alert(obtenerMensaje(i+1).nombreHexagrama);
+      //alert(obtenerMensaje(i+1).nombreHexagrama);
 
-      var uno=document.getElementById( (1+i).toString() );
+      var tagHexagrama2 = document.getElementById("nombreHexagrama2");
+      tagHexagrama2.innerText = obtenerMensaje(i+1).nombreHexagrama;
+
+      uno = document.getElementById( (1+i).toString());
       uno.style.color="#f34";
       uno.style.fontSize="30px";
       uno.onmouseover=function(e){
         document.getElementById("descr").innerHTML=obtenerMensaje(i+1).mensaje;
-        uno.removeAttribute("style");
+        //uno.removeAttribute("style");
       };
-      break;
+    }
+    if(lhexa2.equals(hexagramas[i])){
+      dos = document.getElementById( (1+i).toString());
+      dos.style.color="#f34";
+      dos.style.fontSize="30px";
+      dos.onmouseover=function(e){
+        document.getElementById("descr").innerHTML=obtenerMensaje(i+1).mensaje;
+        //dos.removeAttribute("style");
+      };
+
+      var tagHexagrama1 = document.getElementById("nombreHexagrama1");
+      tagHexagrama1.innerText = obtenerMensaje(i+1).nombreHexagrama;
     }
     contador++;
   }
@@ -374,5 +412,3 @@ function obtenerMensaje(numero){
   }
   return true;
 };
-
-
