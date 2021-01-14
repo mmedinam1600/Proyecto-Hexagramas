@@ -25,6 +25,10 @@ h1{
     letter-spacing: 0.46px;
     color: #661a3f;
     text-shadow: 2px 2px #000000;
+    animation-name: titulo-anim;
+    animation-duration: 1s;
+    animation-direction:alternate-reverse;
+    animation-iteration-count: infinite;
 }
 
 .inputCard{
@@ -128,12 +132,26 @@ h1{
     flex-wrap: wrap;
 }
 
-.hexagram__container--chart{
-
+div.hexagram__container--chart{
+  display:block;
+  position:relative;
+  top:20px;
+  left:325px;
 }
 
-.hexagram__container--table{
+div.hexagram__container--table{
+  display:block;
+  position:relative;
+  top:100px;
+  left:-15px;
+}
 
+div.des{
+  display:block;
+  position:relative;
+  top:170px;
+  left:550px;
+  font:20px space-around;
 }
 
 .hexagram__container--table--header{
@@ -144,9 +162,54 @@ h1{
     margin: 0 auto;
     border-collapse: collapse;
     text-align: center;
+    animation-name: cart;
+    animation-duration: 2s;
 }
 
 .hexagram__container--table--borderRight{
     border-right: 2px solid black;
+}
+.hexg-table{
+    
+}
+.lineaC{
+   animation-name: beat;
+   animation-duration: 1s ; 
+}
+.linea{
+    animation-name: beat;
+    animation-duration: 1s ; 
+}
+.Hexa-td{
+    background-image: url('../images/Carta.jpg');
+    background-size: cover;
+    padding: 10px; 
+}
+
+@keyframes beat {
+    20%{
+        transform: scale(1);
+    }
+    0%{
+        transform: scale(2);
+    }
+}
+@keyframes cart{
+    0% {
+        transform: scaleY(0.1);
+        transform: scaleY(0.1);
+    }
+  100% {
+        transform: scaleY(1);
+        transform: scaleY(1);
+  }
+}
+@keyframes titulo-anim{
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0.8);
+    }   
 }
 

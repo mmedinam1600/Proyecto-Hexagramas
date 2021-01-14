@@ -1,203 +1,208 @@
-var tabla,lista,celda;
+let tabla;
+let celda = [];
+let lista = [];
 const lhexa=[];
+const lhexa2= [];
+var uno;
+var dos;
 
+var yinM;
+var yang;
+var yin;
+var yanM;
 
 function iniciar(){
- tabla=document.getElementById("hexg");
- lista=document.createElement("td");//se crea
- lista2=document.createElement("td");
- lista3=document.createElement("td");
+ tabla = document.getElementById("hexg"); //obtenemos el elemento tbody
+ /* Creamos las 3 columnas de los hexagramas */
+ lista[0] = document.createElement("td");
+ lista[1] = document.createElement("td");
+ lista[2] = document.createElement("td");
+
+ /* Agregamos la clase Hexa-td */
+ lista[0].classList.add("Hexa-td");
+ lista[1].classList.add("Hexa-td");
+ lista[2].classList.add("Hexa-td");
 }
 
- function agregarLinea(){   
-  var num1=document.getElementById("valor1").value;
-  var num2=document.getElementById("valor2").value;
-  var num3=document.getElementById("valor3").value;
-  var n1=parseInt(num1,10);//conviersion de string a int 
-  var n2=parseInt(num2,10);
-  var n3=parseInt(num3,10);
-  var valLin=n1+n2+n3; //variable que guarda el valor de la suma de los 3 numeros
-  var valor= ConvLineas(valLin);
-  var valor2= ConvLineas2(valLin);
-  var valor3= ConvLineas3(valLin);
+ function agregarLinea(){
+  /* Obtenemos los valores ingresados en el input */
+  var num1 = document.getElementById("valor1").value;
+  var num2 = document.getElementById("valor2").value;
+  var num3 = document.getElementById("valor3").value;
+  /* Parseamos el string a int */
+   num1 = parseInt(num1, 10);
+   num2 = parseInt(num2, 10);
+   num3 = parseInt(num3, 10);
 
-  //Tabla 1
-  celda=document.createElement("tr");
-  celda.appendChild(valor);
-  celda.classList.add("linea");
-  if (lista.hasChildNodes()){
-     lista.insertBefore(celda,lista.childNodes[0]); 
-  } 
-  else{
-     lista.appendChild(celda);      
+  var sumaValores = num1 + num2 + num3; //variable que guarda el valor de la suma de los 3 numeros
+ /* Funciones que se encargan de devolver la imagen correspondiente a la línea */
+  var valor= GenerarLinea(sumaValores); //Generamos el hexagrama original
+  var valor2= ConvertirLineaMutante(sumaValores); //Generamos la primer conversión
+  var valor3= ConvertirLineaMutante2(sumaValores); //Generamos la segunda conversión
+   /* Creamos las lineas lineas */
+  crearLinea(valor, "linea", 0);
+   crearLinea(valor2, "lineaC", 1);
+   crearLinea(valor3, "lineaC", 2);
+}
+
+function crearLinea(valor, nombreClase, columna){
+//Tabla 1
+  celda[columna] = document.createElement("tr");
+  celda[columna].appendChild(valor);
+  celda[columna].classList.add(nombreClase);
+  if (lista[columna].hasChildNodes()){
+    lista[columna].insertBefore(celda[columna], lista[columna].childNodes[columna]);
   }
-  tabla.appendChild(lista);
-
-  //Tabla 2
-  celda2=document.createElement("tr");
-  celda2.appendChild(valor2);
-  if (lista2.hasChildNodes()){
-     lista2.insertBefore(celda2,lista2.childNodes[0]); 
-  } 
   else{
-     lista2.appendChild(celda2);     
+    lista[columna].appendChild(celda[columna]);
   }
-  tabla.appendChild(lista2);
-
-  //Tabla 3
-  celda3=document.createElement("tr");
-  celda3.appendChild(valor3);
-  if (lista3.hasChildNodes()){
-     lista3.insertBefore(celda3,lista3.childNodes[0]); 
-  } 
-  else{
-     lista3.appendChild(celda3);     
-  }
-  tabla.appendChild(lista3);
-
+  tabla.appendChild(lista[columna]);
 }
 
 function borrarHexagrama(){
-  while(lista.hasChildNodes() && lista2.hasChildNodes() && lista3.hasChildNodes()){
-    lista.removeChild(lista.lastChild);
-    lista2.removeChild(lista2.lastChild);
-    lista3.removeChild(lista3.lastChild);
+  while(lista[0].hasChildNodes() && lista[1].hasChildNodes() && lista[2].hasChildNodes()){
+    lista[0].removeChild(lista[0].lastChild);
+    lista[1].removeChild(lista[1].lastChild);
+    lista[2].removeChild(lista[2].lastChild);
     lhexa.pop();
+    lhexa2.pop();
     console.log(lhexa);
   }
+   document.getElementById("descr").innerHTML="Descripción hexagrama";
+  var tagHexagrama1 = document.getElementById("nombreHexagrama1");
+  tagHexagrama1.innerHTML = "";
+  var tagHexagrama2 = document.getElementById("nombreHexagrama2");
+  tagHexagrama2.innerHTML = "";
+  if(uno && dos){
+    uno.removeAttribute("style");
+    dos.removeAttribute("style");
+    uno.onmouseover = null;
+    dos.onmouseover = null;
+  }
 }
 
-		
 function borrarLinea(){
-  if(lista.hasChildNodes() && lista2.hasChildNodes() && lista3.hasChildNodes())
-  	 lista.removeChild(lista.childNodes[0]);
-     lista2.removeChild(lista2.childNodes[0]);
-     lista3.removeChild(lista3.childNodes[0]);
+  if(lista[0].hasChildNodes() && lista[1].hasChildNodes() && lista[2].hasChildNodes())
+  	 lista[0].removeChild(lista[0].childNodes[0]);
+     lista[1].removeChild(lista[1].childNodes[0]);
+     lista[2].removeChild(lista[2].childNodes[0]);
      lhexa.pop();
+     lhexa2.pop();
      console.log(lhexa);
+     document.getElementById("descr").innerHTML="Descripción hexagrama";
+    var tagHexagrama1 = document.getElementById("nombreHexagrama1");
+    tagHexagrama1.innerHTML = "";
+  var tagHexagrama2 = document.getElementById("nombreHexagrama2");
+  tagHexagrama2.innerHTML = "";
+  if(uno && dos){
+    uno.removeAttribute("style");
+    dos.removeAttribute("style");
+    uno.onmouseover = null;
+    dos.onmouseover = null;
+  }
 }
 
-
-function verificaVal(){//funcion que verifica los valores
+function verificaVal(){ //funcion que verifica los valores
 // Hace la validacion antes de crear una nueva linea y tambien limita el numero de lineas que se pueden agregar (MAX de lineas es 6)
-  var x=document.getElementById("valor1").value;
-  var y=document.getElementById("valor2").value;
-  var z=document.getElementById("valor3").value;
-  var ok1=false;//Bandera
-  var ok2=false;//Bandera
-  var ok3=false;//Bandera
-  var oklineas=true;//Bandera
-  var hexaCompleto=false;//Bandera
+  var valor1 = document.getElementById("valor1").value;
+  var valor2 = document.getElementById("valor2").value;
+  var valor3 = document.getElementById("valor3").value;
   var lineas = document.getElementsByClassName("linea");
   var nlineas =lineas.length;
+  if(!valor1 || !valor2 || !valor3){ //Si le falto ingresar un valor en el input
+    return alert("Te falto llenar algunos valores");
+  }
+  if(valor1 === "2" || valor1 === "3"){
+  } else{
+    return alert("Solo se permiten valores 2 o 3");
+  }
+  if(valor2 === "2" || valor2 === "3"){
+  } else{
+    return alert("Solo se permiten valores 2 o 3");
+  }
+  if(valor3 === "2" || valor3 === "3"){
+  } else{
+    return alert("Solo se permiten valores 2 o 3");
+  }
   if(nlineas > 5){
-    oklineas=false;
+    return alert("Se ingreso el numero máximo de líneas, primero borra antes de agregar.");
   }
-  if(nlineas==5){
-    hexaCompleto=true;
-  }
-  if(x==2 || x==3 ){
-  	ok1=true;
-  }
-
-  if(y==2 || y==3 ){
-  	ok2=true && ok1; //Utilizo operadores booleanos
-  }
-
-  if(z==2 || z==3 ){
-  	ok3=true && ok2; //Utilizo operadores booleanos
-  }
-  //Condiciones para mostrar los mensajes segun el caso que no cumpla
-  if(ok3){
-    if(oklineas){
-        agregarLinea();
-    }else{
-        alert("Solo se permiten 6 lineas en total");
-    }
-  }else{
-      alert("Solo se permiten valores 2 o 3");
-  }
+  agregarLinea();
 
   //Condicion para que se muestre el nombre y el numero del hexagrama
-  if(hexaCompleto){
-    mostrarNomyNumHexa();
+  if(nlineas == 5){
+    obtenerDescripcion();
   }
 }
 
-function ConvLineas(x){//funcion que retornara la linea correspondiente dependiendo el resultado de la suma
-    var yinM=new Image();
-    yinM.src="images/Yin mutante.png";
-
-    var yang=new Image();
-    yang.src="images/Yang.png";
-
-    var yin=new Image();
-    yin.src="images/Yin.png";
-
-    var yanM=new Image();
-    yanM.src="images/Yang mutante.png";
-
-    if(x==6){
-        return yinM;
-    }
-
-    if(x==7){
-        return yang;
-    }
-
-    if(x==8){
-        return yin;
-    }
-
-    if(x==9){
-        return yanM;
-    }
+function GenerarLinea(sumaValores){//funcion que retornara la linea correspondiente dependiendo el resultado de la suma
+  switch(sumaValores){
+    case 6:
+      yinM = new Image();
+      yinM.src="images/Yin mutante.png";
+      return yinM;
+    case 7:
+      yang = new Image();
+      yang.src="images/Yang.png";
+      return yang;
+    case 8:
+      yin=new Image();
+      yin.src="images/Yin.png";
+      return yin;
+    case 9:
+      yanM=new Image();
+      yanM.src="images/Yang mutante.png";
+      return yanM;
+    default: return alert("Error al devolver la imagen.");
+  }
 }
 
-function ConvLineas2(x){ //Tabla 2
-    var yang=new Image();
-    yang.src="images/Yang.png";
-
-    var yin=new Image();
-    yin.src="images/Yin.png";
-
-    if(x == 6){
-        return yin;
-    }
-    if(x == 9){
-        return yang;
-    }
-    if(x == 7){
-        return yin;
-    }
-    if(x == 8){
-        return yin;
-    }
+function ConvertirLineaMutante(sumaValores){ //Tabla 2
+  yin = new Image();
+  yang = new Image();
+  switch (sumaValores){
+    case 6:
+      yin.src="images/Yin.png";
+      lhexa2.push(2);
+      return yin;
+    case 7:
+      yang.src="images/Yang.png";
+      lhexa2.push(1);
+      return yang;
+    case 8:
+      yin.src="images/Yin.png";
+      lhexa2.push(2);
+      return yin;
+    case 9:
+      yang.src="images/Yang.png";
+      lhexa2.push(1);
+      return yang;
+    default: return alert("Error al devolver la imagen.");
+  }
 }
 
-function ConvLineas3(x){ // Tabla 3
-    var yang=new Image();
-    yang.src="images/Yang.png";
-
-    var yin=new Image();
-    yin.src="images/Yin.png";
-
-    if(x == 6){
-        lhexa.push(1);
-        return yang;
-    }
-    if(x == 9){
-        lhexa.push(2);
-        return yin;
-    }
-    if(x == 7){
-        lhexa.push(1);
-        return yang;
-    }
-    if(x == 8){
-        lhexa.push(2);
-        return yin;
-    }
+function ConvertirLineaMutante2(sumaValores){ // Tabla 3
+  yang = new Image();
+  yin=new Image();
+  switch (sumaValores){
+    case 6:
+      yang.src="images/Yang.png";
+      lhexa.push(1);
+      return yang;
+    case 7:
+      yang.src="images/Yang.png";
+      lhexa.push(1);
+      return yang;
+    case 8:
+      yin.src="images/Yin.png";
+      lhexa.push(2);
+      return yin;
+    case 9:
+      yin.src="images/Yin.png";
+      lhexa.push(2);
+      return yin;
+    default: return alert("Error al devolver la imagen.");
+  }
 }
 
 let verificarNumero = (text) => {
@@ -210,51 +215,190 @@ let verificarNumero = (text) => {
         text.classList.add("inputCard__content__button--invalid");
         console.log("Inválido");
     }
-
 }
 
-
 //Aqui se van comparando el arreglo guardado con cada una de las posblies opciones de hexagrama
-function mostrarNomyNumHexa(){
-
+function obtenerDescripcion(){
   //1 es yang ____________
   //2 es yin  ____   _____
+  const hexagramas = [
+    [1,1,1,1,1,1],
+    [2,2,2,2,2,2],
+    [1,2,2,2,1,2],
+    [2,1,2,2,2,1],
+    [1,1,1,2,1,2],
 
-    const hexa1 = [1,1,1,1,1,1];  const hexa16 = [2,2,2,1,2,2];  const hexa31 = [2,2,1,1,1,2];  const hexa46 = [2,1,1,2,2,2];  const hexa61 = [1,1,2,2,1,1];
-    const hexa2 = [2,2,2,2,2,2];  const hexa17 = [1,2,2,1,1,2];  const hexa32 = [2,1,1,1,2,2];  const hexa47 = [2,1,2,1,1,2];  const hexa62 = [2,2,1,1,2,2];
-    const hexa3 = [1,2,2,2,1,2];  const hexa18 = [2,1,1,2,2,1];  const hexa33 = [2,2,1,1,1,1];  const hexa48 = [2,1,1,2,1,2];  const hexa63 = [1,2,1,2,1,2];
-    const hexa4 = [2,1,2,2,2,1];  const hexa19 = [1,1,2,2,2,1];  const hexa34 = [1,1,1,1,2,2];  const hexa49 = [1,2,1,1,1,2];  const hexa64 = [2,1,2,1,2,1];
-    const hexa5 = [1,1,1,2,1,2];  const hexa20 = [2,2,2,2,1,1];  const hexa35 = [2,2,2,1,2,1];  const hexa50 = [2,1,1,1,2,1];
-    const hexa6 = [2,1,2,1,1,1];  const hexa21 = [1,2,2,1,2,1];  const hexa36 = [1,2,1,2,2,2];  const hexa51 = [1,2,2,1,2,2];
-    const hexa7 = [2,1,2,2,2,2];  const hexa22 = [1,2,1,2,2,1];  const hexa37 = [1,2,1,2,1,1];  const hexa52 = [2,2,1,2,2,1];
-    const hexa8 = [2,2,2,2,1,2];  const hexa23 = [2,2,2,2,2,1];  const hexa38 = [1,1,2,1,2,1];  const hexa53 = [2,2,1,2,1,1];
-    const hexa9 = [1,1,1,2,1,1];  const hexa24 = [1,2,2,2,2,2];  const hexa39 = [2,2,1,2,1,2];  const hexa54 = [1,1,2,1,2,2];
-    const hexa10= [1,1,2,1,1,1];  const hexa25 = [1,2,2,1,1,1];  const hexa40 = [2,1,2,1,2,2];  const hexa55 = [1,2,1,1,2,2];
-    const hexa11= [1,1,1,2,2,2];  const hexa26 = [1,1,1,2,2,1];  const hexa41 = [1,1,2,2,2,1];  const hexa56 = [2,2,1,1,2,1];
-    const hexa12= [2,2,2,1,1,1];  const hexa27 = [1,2,2,2,2,1];  const hexa42 = [1,2,2,2,1,1];  const hexa57 = [2,1,1,2,1,1];
-    const hexa13= [1,2,1,1,1,1];  const hexa28 = [2,1,1,1,1,2];  const hexa43 = [1,1,1,1,1,2];  const hexa58 = [1,1,2,1,1,2];
-    const hexa14= [1,1,1,1,2,1];  const hexa29 = [2,1,2,2,1,2];  const hexa44 = [2,1,1,1,1,1];  const hexa59 = [2,1,2,2,1,1];
-    const hexa15= [2,2,1,2,2,2];  const hexa30 = [1,2,1,1,2,1];  const hexa45 = [2,2,2,1,1,2];  const hexa60 = [1,1,2,2,1,2];
-    
+    [1,1,1,2,1,2],
+    [2,1,2,2,2,2],
+    [2,2,2,2,1,2],
+    [1,1,1,2,1,1],
+    [1,1,2,1,1,1],
 
-    if(lhexa.equals(hexa1)){alert("1. Ch'ien");}      if(lhexa.equals(hexa16)){alert("16. Yü");}       if(lhexa.equals(hexa31)){alert("31. Hsien");}      if(lhexa.equals(hexa46)){alert("46. Sheng");}  if(lhexa.equals(hexa61)){alert("61. Chung Fu");}
-    if(lhexa.equals(hexa2)){alert("2. K'un");}        if(lhexa.equals(hexa17)){alert("17. Sui");}      if(lhexa.equals(hexa32)){alert("32. Heng");}       if(lhexa.equals(hexa47)){alert("47. K'un");}   if(lhexa.equals(hexa62)){alert("62. Hsiao Kuo");}
-    if(lhexa.equals(hexa3)){alert("3. Chun");}        if(lhexa.equals(hexa18)){alert("18. Ku");}       if(lhexa.equals(hexa33)){alert("33. Tun");}        if(lhexa.equals(hexa48)){alert("48. Ching");}  if(lhexa.equals(hexa63)){alert("63. Chi Chi");}
-    if(lhexa.equals(hexa4)){alert("4. Meng");}        if(lhexa.equals(hexa19)){alert("19. Lin");}      if(lhexa.equals(hexa34)){alert("34. Ta Chuang");}  if(lhexa.equals(hexa49)){alert("49. Ko");}     if(lhexa.equals(hexa64)){alert("64. Wei Chi");}
-    if(lhexa.equals(hexa5)){alert("5. Hsü");}         if(lhexa.equals(hexa20)){alert("20. Kuan");}     if(lhexa.equals(hexa35)){alert("35. Chin");}       if(lhexa.equals(hexa50)){alert("50. Ting");}
-    if(lhexa.equals(hexa6)){alert("6. Sung");}        if(lhexa.equals(hexa21)){alert("21. Shin Ho");}  if(lhexa.equals(hexa36)){alert("36. Ming I");}     if(lhexa.equals(hexa51)){alert("51. Chen");}
-    if(lhexa.equals(hexa7)){alert("7. Shih");}        if(lhexa.equals(hexa22)){alert("22. Pi");}       if(lhexa.equals(hexa37)){alert("37. Chia Jen");}   if(lhexa.equals(hexa52)){alert("52. Ken");}
-    if(lhexa.equals(hexa8)){alert("8. Pi");}          if(lhexa.equals(hexa23)){alert("23. Po");}       if(lhexa.equals(hexa38)){alert("38. K'uei");}      if(lhexa.equals(hexa53)){alert("53. Chien");}
-    if(lhexa.equals(hexa9)){alert("9. Hsiao Ch'u");}  if(lhexa.equals(hexa24)){alert("24. Fu");}       if(lhexa.equals(hexa39)){alert("39. Chien");}      if(lhexa.equals(hexa54)){alert("54. Kuei Mei");}
-    if(lhexa.equals(hexa10)){alert("10. Lü");}        if(lhexa.equals(hexa25)){alert("25. Wu Wang");}  if(lhexa.equals(hexa40)){alert("40. Hsieh");}      if(lhexa.equals(hexa55)){alert("55. Feng");}
-    if(lhexa.equals(hexa11)){alert("11. Tai");}       if(lhexa.equals(hexa26)){alert("26. Ta Ch'u");}  if(lhexa.equals(hexa41)){alert("41. Sun");}        if(lhexa.equals(hexa56)){alert("56. Lü");}
-    if(lhexa.equals(hexa12)){alert("12. P'i");}       if(lhexa.equals(hexa27)){alert("27. I");}        if(lhexa.equals(hexa42)){alert("42. I");}          if(lhexa.equals(hexa57)){alert("57. Sun");}
-    if(lhexa.equals(hexa13)){alert("13. Tung jen");}  if(lhexa.equals(hexa28)){alert("28. Ta Kuo");}   if(lhexa.equals(hexa43)){alert("43. Kuai");}       if(lhexa.equals(hexa58)){alert("58. Tui");}
-    if(lhexa.equals(hexa14)){alert("14. Ta Yu");}     if(lhexa.equals(hexa29)){alert("29. Kan");}      if(lhexa.equals(hexa44)){alert("44. Kou");}        if(lhexa.equals(hexa59)){alert("59. Huan");}
-    if(lhexa.equals(hexa15)){alert("15. Ch'ien");}    if(lhexa.equals(hexa30)){alert("30. Li");}       if(lhexa.equals(hexa45)){alert("45. Ts'ui");}      if(lhexa.equals(hexa60)){alert("60. Chieh");}
+    [1,1,1,2,2,2],
+    [2,2,2,1,1,1],
+    [1,2,1,1,1,1],
+    [1,1,1,1,2,1],
+    [2,2,1,2,2,2],
 
+    [2,2,2,1,2,2],
+    [1,2,2,1,1,2],
+    [2,1,1,2,2,1],
+    [1,1,2,2,2,1],
+    [2,2,2,2,1,1], //20
+
+    [1,2,2,1,2,1],
+    [1,2,1,2,2,1],
+    [2,2,2,2,2,1],
+    [1,2,2,2,2,2],
+    [1,2,2,1,1,1],
+
+    [1,1,1,2,2,1],
+    [1,2,2,2,2,1],
+    [2,1,1,1,1,2],
+    [2,1,2,2,1,2],
+    [1,2,1,1,2,1],
+
+    [2,2,1,1,1,2],
+    [2,1,1,1,2,2],
+    [2,2,1,1,1,1],
+    [1,1,1,1,2,2],
+    [2,2,2,1,2,1],
+
+    [1,2,1,2,2,2],
+    [1,2,1,2,1,1],
+    [1,1,2,1,2,1],
+    [2,2,1,2,1,2],
+    [2,1,2,1,2,2], //40
+
+    [1,1,2,2,2,1],
+    [1,2,2,2,1,1],
+    [1,1,1,1,1,2],
+    [2,1,1,1,1,1],
+    [2,2,2,1,1,2],
+
+    [2,1,1,2,2,2],
+    [2,1,2,1,1,2],
+    [2,1,1,2,1,2],
+    [1,2,1,1,1,2],
+    [2,1,1,1,2,1],
+
+    [1,2,2,1,2,2],
+    [2,2,1,2,2,1],
+    [2,2,1,2,1,1],
+    [1,1,2,1,2,2],
+    [1,2,1,1,2,2],
+
+    [2,2,1,1,2,1],
+    [2,1,1,2,1,1],
+    [1,1,2,1,1,2],
+    [2,1,2,2,1,1],
+    [1,1,2,2,1,2], //60
+
+    [1,1,2,2,1,1],
+    [2,2,1,1,2,2],
+    [1,2,1,2,1,2],
+    [2,1,2,1,2,1]
+  ];
+  let contador = 1;
+  for(let i = 0;i<hexagramas.length;i++){
+    if(lhexa.equals(hexagramas[i])){
+      //alert(obtenerMensaje(i+1).nombreHexagrama);
+
+      var tagHexagrama2 = document.getElementById("nombreHexagrama2");
+      tagHexagrama2.innerText = obtenerMensaje(i+1).nombreHexagrama;
+
+      uno = document.getElementById( (1+i).toString());
+      uno.style.color="#f34";
+      uno.style.fontSize="30px";
+      uno.onmouseover=function(e){
+        document.getElementById("descr").innerHTML=obtenerMensaje(i+1).mensaje;
+        //uno.removeAttribute("style");
+      };
+    }
+    if(lhexa2.equals(hexagramas[i])){
+      dos = document.getElementById( (1+i).toString());
+      dos.style.color="#f34";
+      dos.style.fontSize="30px";
+      dos.onmouseover=function(e){
+        document.getElementById("descr").innerHTML=obtenerMensaje(i+1).mensaje;
+        //dos.removeAttribute("style");
+      };
+
+      var tagHexagrama1 = document.getElementById("nombreHexagrama1");
+      tagHexagrama1.innerText = obtenerMensaje(i+1).nombreHexagrama;
+    }
+    contador++;
   }
+}
 
+function obtenerMensaje(numero){
+  switch (numero) {
+    case 1: return { nombreHexagrama: "1. Ch'ien", mensaje: "1.  Cielo. Lo creativo. El principio generador."}
+    case 2: return { nombreHexagrama: "2. K'un", mensaje: "2.  Tierra. Lo receptivo. El principio pasivo."}
+    case 3: return { nombreHexagrama: "3. Chun", mensaje: "3.  Acumular. El obstáculo inicial. La dificultad del comienzo."}
+    case 4: return { nombreHexagrama: "4. Meng", mensaje: "4. Juventud. El joven necio. La inmadurez."}
+    case 5: return { nombreHexagrama: "5. Hsü", mensaje: "5.  Esperar. La espera. La maduración."}
+    case 6: return { nombreHexagrama: "6. Sung", mensaje: "6.  Disputar. El conflicto. El pleito"}
+    case 7: return { nombreHexagrama: "7. Shih", mensaje: "7.  Ejército. La legión."}
+    case 8: return { nombreHexagrama: "8. Pi", mensaje: "8.  Solidaridad. La unión."}
+    case 9: return { nombreHexagrama: "9. Hsiao Ch'u", mensaje: "9.  Animalito doméstico. La pequeña fuerza."}
+    case 10: return { nombreHexagrama: "10. Lü", mensaje: "10.  Caminar. El porte. El paso cauteloso."}
+    case 11: return { nombreHexagrama: "11. Tai", mensaje: "11.  Prosperidad. La paz. La armonía."}
+    case 12: return { nombreHexagrama: "12. P'i", mensaje: "12.  Cierre. El estancamiento. Lo inerte."}
+    case 13: return { nombreHexagrama: "13. Tung jen", mensaje: "13. Hombres Reunidos. La unión comunitaria."}
+    case 14: return { nombreHexagrama: "14. Ta Yu", mensaje: "14. Gran dominio. La gran posesión. Lo que se tiene de más."}
+    case 15: return { nombreHexagrama: "15. Ch'ien", mensaje: "15. Condescendencia. La modestia. La humildad."}
+    case 16: return { nombreHexagrama: "16. Yü", mensaje: "16. Ocuparse. El entusiasmo. La algarabía."}
+    case 17: return { nombreHexagrama: "17. Sui", mensaje: "17. Conformarse. La continuidad. El seguimiento."}
+    case 18: return { nombreHexagrama: "18. Ku", mensaje: "18. Destrucción. La reconstrucción. La labor en lo corrompido."}
+    case 19: return { nombreHexagrama: "19. Lin", mensaje: "19. Acercarse. Lo que va llegando."}
+    case 20: return { nombreHexagrama: "20. Kuan", mensaje: "20. Observar. La contemplación."}
+    case 21: return { nombreHexagrama: "21. Shin Ho", mensaje: "21. Quebrar mordiendo. La dentellada. La filosa mordedura."}
+    case 22: return { nombreHexagrama: "22. Pi", mensaje: "22. Adornar. La elegancia. La gracia."}
+    case 23: return { nombreHexagrama: "23. Po", mensaje: "23. Resquebrajar. La desintegración. El derrumbe."}
+    case 24: return { nombreHexagrama: "24. Fu", mensaje: "24. Regresar. El retorno. Lo que vuelve."}
+    case 25: return { nombreHexagrama: "25. Wu Wang", mensaje: "25. Sinceridad. La inocencia. La naturalidad."}
+    case 26: return { nombreHexagrama: "26. Ta Ch'u", mensaje: "26. Fuerza educadora. El poder de lo fuerte. La gran acumulación."}
+    case 27: return { nombreHexagrama: "27. I", mensaje: "27. Nutrirse. La alimentación. Las fauces."}
+    case 28: return { nombreHexagrama: "28. Ta Kuo", mensaje: "28. Excesos. La preponderancia de lo grande."}
+    case 29: return { nombreHexagrama: "29. Kan", mensaje: "29. Peligro. Lo abismal. La caida."}
+    case 30: return { nombreHexagrama: "30. Li", mensaje: "30. Distinguir. El resplandor. Lo adherente."}
+    case 31: return { nombreHexagrama: "31. Hsien", mensaje: "31. Unir. La influencia.La atracción."}
+    case 32: return { nombreHexagrama: "32. Heng", mensaje: "32. Luna Creciente. La duración. La permanencia."}
+    case 33: return { nombreHexagrama: "33. Tun", mensaje: "33. Retirarse. EL repliegue."}
+    case 34: return { nombreHexagrama: "34. Ta Chuang", mensaje: "34. Gran fuerza. El gran vigor."}
+    case 35: return { nombreHexagrama: "35. Chin", mensaje: "35. Progresar. El avance."}
+    case 36: return { nombreHexagrama: "36. Ming I", mensaje: "36. Luz que se apaga. El oscurecimiento."}
+    case 37: return { nombreHexagrama: "37. Chia Jen", mensaje: "37. Gente de familia. El clan."}
+    case 38: return { nombreHexagrama: "38. K'uei", mensaje: "38. Contraste. La oposición. El antagonismo."}
+    case 39: return { nombreHexagrama: "39. Chien", mensaje: "39. Dificultad. El obstáculo. El impedimento."}
+    case 40: return { nombreHexagrama: "40. Hsieh", mensaje: "40. Explicar. La liberación. El alivio."}
+    case 41: return { nombreHexagrama: "41. Sun", mensaje: "41. Perder. La disminución."}
+    case 42: return { nombreHexagrama: "42. I", mensaje: "42. Evolución. El aumento. La ganancia."}
+    case 43: return { nombreHexagrama: "43. Kuai", mensaje: "43. Decidir. El desbordamiento. La resolución."}
+    case 44: return { nombreHexagrama: "44. Kou", mensaje: "44. Encontrarse. El acoplamiento."}
+    case 45: return { nombreHexagrama: "45. Ts'ui", mensaje: "45. Cosechar. La reunión. La convergencia."}
+    case 46: return { nombreHexagrama: "46. Sheng", mensaje: "46. Subir. El ascenso. La escalada."}
+    case 47: return { nombreHexagrama: "47. K'un", mensaje: "47. Angustia. La pesadumbre. El agotamiento."}
+    case 48: return { nombreHexagrama: "48. Ching", mensaje: "48. El pozo de agua. La fuente."}
+    case 49: return { nombreHexagrama: "49. Ko", mensaje: "49. Renovar. La revolución. El cambio."}
+    case 50: return { nombreHexagrama: "50. Ting", mensaje: "50. La caldera. Lo alquímico."}
+    case 51: return { nombreHexagrama: "51. Chen", mensaje: "51. Trueno. La conmoción. Lo suscitativo."}
+    case 52: return { nombreHexagrama: "52. Ken", mensaje: "52. Cimientos. La quietud. La detención."}
+    case 53: return { nombreHexagrama: "53. Chien", mensaje: "53. Evolución. El progreso gradual."}
+    case 54: return { nombreHexagrama: "54. Kuei Mei", mensaje: "54. Desposar a la hija menor. La doncella."}
+    case 55: return { nombreHexagrama: "55. Feng", mensaje: "55. Abundancia. La plenitud."}
+    case 56: return { nombreHexagrama: "56. Lü", mensaje: "56. Viajero. El andariego."}
+    case 57: return { nombreHexagrama: "57. Sun", mensaje: "57. Viento. Lo penetrante. Lo suave."}
+    case 58: return { nombreHexagrama: "58. Tui", mensaje: "58. Recogerse. La serenidad. La satisfacción."}
+    case 59: return { nombreHexagrama: "59. Huan", mensaje: "59. Confusión. La dispersión. La disolución."}
+    case 60: return { nombreHexagrama: "60. Chieh", mensaje: "60. Moderación. La restricción. La limitación."}
+    case 61: return { nombreHexagrama: "61. Chung Fu", mensaje: "61. Fe Interior. La verdad interior. La sinceridad interna."}
+    case 62: return { nombreHexagrama: "62. Hsiao Kuo", mensaje: "62. Pequeñas cosas importantes. La pequeña preponderancia."}
+    case 63: return { nombreHexagrama: "63. Chi Chi", mensaje: "63. Conclusiones. Después de la realización."}
+    case 64: return { nombreHexagrama: "64. Wei Chi", mensaje: "64. Inconcluso. Antes de la realización."}
+  }
+}
 
   Array.prototype.equals = function (getArray) {
   if (this.length != getArray.length) return false;
@@ -268,5 +412,3 @@ function mostrarNomyNumHexa(){
   }
   return true;
 };
-
-
