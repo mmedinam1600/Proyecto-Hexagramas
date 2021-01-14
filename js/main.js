@@ -40,7 +40,7 @@ function iniciar(){
   var valor2= ConvertirLineaMutante(sumaValores); //Generamos la primer conversión
   var valor3= ConvertirLineaMutante2(sumaValores); //Generamos la segunda conversión
    /* Creamos las lineas lineas */
-  crearLinea(valor, "linea", 0);
+   crearLinea(valor, "linea", 0);
    crearLinea(valor2, "lineaC", 1);
    crearLinea(valor3, "lineaC", 2);
 }
@@ -51,7 +51,7 @@ function crearLinea(valor, nombreClase, columna){
   celda[columna].appendChild(valor);
   celda[columna].classList.add(nombreClase);
   if (lista[columna].hasChildNodes()){
-    lista[columna].insertBefore(celda[columna], lista[columna].childNodes[columna]);
+    lista[columna].insertBefore(celda[columna], lista[columna].childNodes[0]);
   }
   else{
     lista[columna].appendChild(celda[columna]);
@@ -68,7 +68,8 @@ function borrarHexagrama(){
     lhexa2.pop();
     console.log(lhexa);
   }
-   document.getElementById("descr").innerHTML="Descripción hexagrama";
+
+ document.getElementById("descr").innerHTML="Descripción hexagrama";
   var tagHexagrama1 = document.getElementById("nombreHexagrama1");
   tagHexagrama1.innerHTML = "";
   var tagHexagrama2 = document.getElementById("nombreHexagrama2");
@@ -92,9 +93,9 @@ function borrarLinea(){
      document.getElementById("descr").innerHTML="Descripción hexagrama";
     var tagHexagrama1 = document.getElementById("nombreHexagrama1");
     tagHexagrama1.innerHTML = "";
-  var tagHexagrama2 = document.getElementById("nombreHexagrama2");
-  tagHexagrama2.innerHTML = "";
-  if(uno && dos){
+    var tagHexagrama2 = document.getElementById("nombreHexagrama2");
+    tagHexagrama2.innerHTML = "";
+    if(uno && dos){
     uno.removeAttribute("style");
     dos.removeAttribute("style");
     uno.onmouseover = null;
@@ -141,18 +142,22 @@ function GenerarLinea(sumaValores){//funcion que retornara la linea correspondie
       yinM = new Image();
       yinM.src="images/Yin mutante.png";
       return yinM;
+      break;
     case 7:
       yang = new Image();
       yang.src="images/Yang.png";
       return yang;
+      break;
     case 8:
       yin=new Image();
       yin.src="images/Yin.png";
       return yin;
+      break;
     case 9:
       yanM=new Image();
       yanM.src="images/Yang mutante.png";
       return yanM;
+      break;
     default: return alert("Error al devolver la imagen.");
   }
 }
@@ -165,18 +170,22 @@ function ConvertirLineaMutante(sumaValores){ //Tabla 2
       yin.src="images/Yin.png";
       lhexa2.push(2);
       return yin;
+      break;
     case 7:
       yang.src="images/Yang.png";
       lhexa2.push(1);
       return yang;
+      break;
     case 8:
       yin.src="images/Yin.png";
       lhexa2.push(2);
       return yin;
+      break;
     case 9:
       yang.src="images/Yang.png";
       lhexa2.push(1);
       return yang;
+      break;
     default: return alert("Error al devolver la imagen.");
   }
 }
@@ -189,18 +198,22 @@ function ConvertirLineaMutante2(sumaValores){ // Tabla 3
       yang.src="images/Yang.png";
       lhexa.push(1);
       return yang;
+      break;
     case 7:
       yang.src="images/Yang.png";
       lhexa.push(1);
       return yang;
+      break;
     case 8:
       yin.src="images/Yin.png";
       lhexa.push(2);
       return yin;
+      break;
     case 9:
       yin.src="images/Yin.png";
       lhexa.push(2);
       return yin;
+      break;
     default: return alert("Error al devolver la imagen.");
   }
 }
@@ -299,6 +312,7 @@ function obtenerDescripcion(){
     [1,2,1,2,1,2],
     [2,1,2,1,2,1]
   ];
+
   let contador = 1;
   for(let i = 0;i<hexagramas.length;i++){
     if(lhexa.equals(hexagramas[i])){
@@ -315,12 +329,13 @@ function obtenerDescripcion(){
         //uno.removeAttribute("style");
       };
     }
+
     if(lhexa2.equals(hexagramas[i])){
       dos = document.getElementById( (1+i).toString());
       dos.style.color="#f34";
       dos.style.fontSize="30px";
       dos.onmouseover=function(e){
-        document.getElementById("descr").innerHTML=obtenerMensaje(i+1).mensaje;
+       document.getElementById("descr").innerHTML=obtenerMensaje(i+1).mensaje;
         //dos.removeAttribute("style");
       };
 
