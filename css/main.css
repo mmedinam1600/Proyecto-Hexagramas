@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@300&family=Lobster&family=Texturina:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@300&family=Lobster&family=Loved+by+the+King&family=Texturina:wght@100&display=swap');
 body{
     /* Background */
     background-image: url('../images/Backgorund4.jpg');
@@ -107,6 +108,18 @@ h1{
     transition: 0.5s;
 }
 
+.nomhexg{
+  font-family: 'Texturina', serif;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;  
+  color:#3C210C;
+}
+
+.hexg{
+ background-image:url('../images/Carta2.jpg'); 
+}
+
 .inputCard__content__button:hover span{
     padding-right: 25px;
 }
@@ -147,11 +160,21 @@ div.hexagram__container--table{
 }
 
 div.des{
-  display:block;
-  position:relative;
-  top:170px;
-  left:550px;
   font:20px space-around;
+  font-family: 'Loved by the King', cursive;
+  font-size: 36px;
+  text-align: center;
+  margin-top: 150px;
+  color:#47661C;
+  font-weight: bold;
+
+}
+
+div.des:hover{
+  animation-name: titulo-anim;
+  animation-duration: 1s;
+  animation-direction:alternate-reverse;
+  animation-iteration-count: infinite;  
 }
 
 .hexagram__container--table--header{
@@ -185,6 +208,7 @@ div.des{
     background-size: cover;
     padding: 10px; 
 }
+
 
 @keyframes beat {
     20%{
